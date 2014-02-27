@@ -3,13 +3,15 @@ package core;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class MainPanel extends JPanel implements MouseListener {
+public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	// パネルサイズ
 	private static final int WIDTH = 240;
 	private static final int HEIGHT = 240;
@@ -22,8 +24,14 @@ public class MainPanel extends JPanel implements MouseListener {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		// 変数などの初期化
 
-		// MouseListenerを登録
+		/* MouseListenerを登録 */
 		addMouseListener(this);
+
+		/* KeyListenerを登録 */
+		// パネルがキーボードを受け付けるようにする（必須）
+		setFocusable(true);
+		// キーリスナーを登録（忘れやすい）
+		addKeyListener(this);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -63,5 +71,24 @@ public class MainPanel extends JPanel implements MouseListener {
 
 	// マウスボタンが離されたとき呼ばれる
 	public void mouseReleased(MouseEvent e) {
+	}
+
+	/* 以下、キーボード制御 */
+	/**
+	 * キーがタイプされたとき呼ばれる。 文字入力を検知したい場合はこっちを使う。
+	 */
+	public void keyTyped(KeyEvent e) {
+	}
+
+	/**
+	 * キーが押されたとき呼ばれる。 ゲームではたいていはこっちを使う。
+	 */
+	public void keyPressed(KeyEvent e) {
+	}
+
+	/**
+	 * キーが離されたとき呼ばれる。
+	 */
+	public void keyReleased(KeyEvent e) {
 	}
 }
