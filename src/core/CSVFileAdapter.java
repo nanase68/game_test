@@ -19,19 +19,18 @@ public class CSVFileAdapter {
 
 	}
 
-	public ArrayList<String> getFilename() {
-		return csv.get(0); // csvの0項目はファイルの名前
-	}
-
 	public void ArrayStringToInteger(ArrayList<String> arrayStr, ArrayList<Integer> arrayInt) {
 		try {
 			for (int i = 0; i < arrayStr.size(); i++) {
-				String string = arrayStr.get(i);
 				arrayInt.add(Integer.parseInt(arrayStr.get(i)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<String> getFilename() {
+		return csv.get(0); // csvの0項目はファイルの名前
 	}
 
 	public ArrayList<Integer> getPositionX() {

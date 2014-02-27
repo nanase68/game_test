@@ -43,8 +43,6 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
 
-		// loadImage("resource/image/reimu001-2.png");
-		// loadImage("reimu001-2.png");
 		allLoadImage("image.csv");
 	}
 
