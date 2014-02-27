@@ -17,9 +17,8 @@ import javax.swing.JPanel;
 import keys.Keys;
 
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
-	// パネルサイズ
-	private static final int WIDTH = 240;
-	private static final int HEIGHT = 240;
+
+	// テスト用円の半径？
 	private static final int SIZE = 50;
 
 	private ArrayList<Point> pointList = new ArrayList<Point>();
@@ -31,7 +30,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
 	public MainPanel() {
 		// パネルの推奨サイズを設定、pack()するときに必要
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setPreferredSize(new Dimension(Keys.WINDOW_WIDTH, Keys.WINDOW_HEIGHT));
 		// 変数などの初期化
 
 		/* MouseListenerを登録 */
