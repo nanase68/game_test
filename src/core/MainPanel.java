@@ -39,8 +39,8 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
 
-		// loadImage("resource/image/reimu001-2.png");
-		loadImage("reimu001-2.png");
+		loadImage("resource/image/reimu001-2.png");
+		// loadImage("reimu001-2.png");
 	}
 
 	public void paintComponent(Graphics g) {
@@ -65,7 +65,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	public void loadImage(String pass) {
 		// プレイヤーのイメージを読み込む
 		// ImageIconを使うとMediaTrackerを使わなくてすむ
-		ImageIcon icon = new ImageIcon(getClass().getResource(pass));
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(pass));
 		image = icon.getImage();
 
 		// MediaTrackerに登録
