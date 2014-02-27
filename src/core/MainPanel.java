@@ -2,6 +2,8 @@ package core;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
@@ -18,6 +21,9 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	private static final int SIZE = 50;
 
 	private ArrayList<Point> pointList = new ArrayList<Point>();
+	private ArrayList<Image> imageList = new ArrayList<Image>();
+
+	public Image image;
 
 	public MainPanel() {
 		// パネルの推奨サイズを設定、pack()するときに必要
@@ -32,6 +38,9 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		setFocusable(true);
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
+
+		// loadImage("resource/image/reimu001-2.png");
+		loadImage("reimu001-2.png");
 	}
 
 	public void paintComponent(Graphics g) {
@@ -43,6 +52,34 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 			Point p = (Point) pointList.get(i);
 			g.fillOval(p.x - SIZE / 2, p.y - SIZE / 2, SIZE, SIZE);
 		}
+
+		for (int i = 0; i < imageList.size(); i++) {
+			Image img = (Image) imageList.get(i);
+			g.drawImage(img, 0, 0, this);
+		}
+	}
+
+	/**
+	 * イメージをロードする
+	 */
+	public void loadImage(String pass) {
+		// プレイヤーのイメージを読み込む
+		// ImageIconを使うとMediaTrackerを使わなくてすむ
+		ImageIcon icon = new ImageIcon(getClass().getResource(pass));
+		image = icon.getImage();
+
+		// MediaTrackerに登録
+		MediaTracker tracker = new MediaTracker(this);
+		tracker.addImage(image, 0);
+
+		// イメージ読み込み完了まで待機
+		try {
+			tracker.waitForID(0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		imageList.add(image);
 	}
 
 	/* 以下、マウス制御 */
