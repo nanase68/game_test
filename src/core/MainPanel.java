@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import keys.Keys;
+
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	// パネルサイズ
 	private static final int WIDTH = 240;
@@ -22,6 +24,8 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
 	private ArrayList<Point> pointList = new ArrayList<Point>();
 	private ArrayList<Image> imageList = new ArrayList<Image>();
+
+	private CSVFileAdapter adapter;
 
 	public Image image;
 
@@ -39,8 +43,9 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
 
-		loadImage("resource/image/reimu001-2.png");
+		// loadImage("resource/image/reimu001-2.png");
 		// loadImage("reimu001-2.png");
+		allLoadImage("image.csv");
 	}
 
 	public void paintComponent(Graphics g) {
@@ -55,7 +60,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
 		for (int i = 0; i < imageList.size(); i++) {
 			Image img = (Image) imageList.get(i);
-			g.drawImage(img, 0, 0, this);
+			g.drawImage(img, adapter.getPositionX().get(i), adapter.getPositionY().get(i), this);
 		}
 	}
 
@@ -80,6 +85,13 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		}
 
 		imageList.add(image);
+	}
+
+	public void allLoadImage(String csvFileStr) {
+		adapter = new CSVFileAdapter(csvFileStr);
+		for (int i = 0; i < adapter.getFilename().size(); i++) {
+			loadImage(Keys.imageDir + adapter.getFilename().get(i));
+		}
 	}
 
 	/* 以下、マウス制御 */
