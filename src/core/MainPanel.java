@@ -14,10 +14,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import panels.csv.AbstractCSVFileAdapter;
+import panels.csv.CSVButtonImageAdapter;
+import panels.csv.CSVSimpleImageAdapter;
+
 import keys.Keys;
-import core.csv.AbstractCSVFileAdapter;
-import core.csv.CSVButtonImageAdapter;
-import core.csv.CSVSimpleImageAdapter;
+import util.Log;
 
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
@@ -25,14 +27,8 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	private static final int SIZE = 50;
 
 	private ArrayList<Point> pointList = new ArrayList<Point>();
-	private ArrayList<Image> imageList = new ArrayList<Image>();
+	private ArrayList<ArrayList<Image>> imageList = new ArrayList<ArrayList<Image>>();
 	private ArrayList<AbstractCSVFileAdapter> adapterList = new ArrayList<AbstractCSVFileAdapter>();
-
-	private CSVSimpleImageAdapter simpleAdapter;
-	private CSVButtonImageAdapter buttonAdapter;
-	private CSVSimpleImageAdapter adapter;
-
-	public Image image;
 
 	public MainPanel() {
 		// パネルの推奨サイズを設定、pack()するときに必要
@@ -49,6 +45,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		addKeyListener(this);
 
 		allLoadImage("simple", "image.csv");
+		allLoadImage("button", "image.csv");
 	}
 
 	public void paintComponent(Graphics g) {
@@ -61,20 +58,24 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 			g.fillOval(p.x - SIZE / 2, p.y - SIZE / 2, SIZE, SIZE);
 		}
 
-		for (int i = 0; i < imageList.size(); i++) {
-			Image img = (Image) imageList.get(i);
-			g.drawImage(img, adapter.getPositionX().get(i), adapter.getPositionY().get(i), this);
+		for (int i = 0; i < adapterList.size(); i++) {
+			AbstractCSVFileAdapter adapter = adapterList.get(i);
+			ArrayList<Image> childImageList = imageList.get(i);
+			for (int ii = 0; ii < childImageList.size(); ii++) {
+				Image img = (Image) childImageList.get(ii);
+				g.drawImage(img, adapter.getPositionX().get(ii), adapter.getPositionY().get(ii), this);
+			}
 		}
 	}
 
 	/**
 	 * イメージをロードする
 	 */
-	public void loadImage(String pass) {
+	public void loadImage(String pass, ArrayList<Image> childImageList) {
 		// プレイヤーのイメージを読み込む
 		// ImageIconを使うとMediaTrackerを使わなくてすむ
 		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(pass));
-		image = icon.getImage();
+		Image image = icon.getImage();
 
 		// MediaTrackerに登録
 		MediaTracker tracker = new MediaTracker(this);
@@ -87,19 +88,26 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 			e.printStackTrace();
 		}
 
-		imageList.add(image);
+		childImageList.add(image);
 	}
 
 	public void allLoadImage(String mode, String csvFileStr) {
-		// AbstractCSVFileAdapter adapter;
+		AbstractCSVFileAdapter adapter;
 		if (mode.equals("simple")) {
 			adapter = new CSVSimpleImageAdapter(csvFileStr);
 		} else if (mode.equals("button")) {
-			// adapter = new CSVButtonImageAdapter(csvFileStr);
+			adapter = new CSVButtonImageAdapter(csvFileStr);
+		} else {
+			adapter = null;
+			Log.f("知らないAdapterです。");
 		}
 
+		adapterList.add(adapter);
+		ArrayList<Image> childImageList = new ArrayList<Image>();
+		imageList.add(childImageList);
+
 		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i));
+			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i), childImageList);
 		}
 	}
 

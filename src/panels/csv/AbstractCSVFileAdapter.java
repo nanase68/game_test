@@ -1,4 +1,4 @@
-package core.csv;
+package panels.csv;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ public abstract class AbstractCSVFileAdapter {
 		}
 	}
 
-	abstract ArrayList<String> getFilename();
+	public abstract ArrayList<String> getFilename();
 
-	abstract ArrayList<Integer> getPositionX();
+	public abstract ArrayList<Integer> getPositionX();
 
-	abstract ArrayList<Integer> getPositionY();
+	public abstract ArrayList<Integer> getPositionY();
 }
