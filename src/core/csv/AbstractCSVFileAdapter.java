@@ -23,4 +23,16 @@ public abstract class AbstractCSVFileAdapter {
 			e.printStackTrace();
 		}
 	}
+
+	protected ArrayList<String> getFilename() {
+		return null;
+	}
+
+	protected ArrayList<Integer> getPositionX() {
+		return null;
+	}
+
+	protected ArrayList<Integer> getPositionY() {
+		return null;
+	}
 }

@@ -91,6 +91,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	}
 
 	public void allLoadImage(String mode, String csvFileStr) {
+		// AbstractCSVFileAdapter adapter;
 		if (mode.equals("simple")) {
 			adapter = new CSVSimpleImageAdapter(csvFileStr);
 		} else if (mode.equals("button")) {

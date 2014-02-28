@@ -12,14 +12,17 @@ public class CSVSimpleImageAdapter extends AbstractCSVFileAdapter {
 		ArrayStringToInteger(csv.get(2), positionY);
 	}
 
+	@Override
 	public ArrayList<String> getFilename() {
 		return csv.get(0); // csvの0項目はファイルの名前
 	}
 
+	@Override
 	public ArrayList<Integer> getPositionX() {
 		return positionX;
 	}
 
+	@Override
 	public ArrayList<Integer> getPositionY() {
 		return positionY;
 	}
