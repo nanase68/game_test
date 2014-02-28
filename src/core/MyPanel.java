@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -8,27 +9,15 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import keys.Keys;
-import util.Log;
-import adapter.csv.AbstractCSVFileAdapter;
-import adapter.csv.CSVButtonImageAdapter;
-import adapter.csv.CSVSimpleImageAdapter;
-
 public abstract class MyPanel extends JPanel {
-	private ArrayList<ArrayList<Image>> imageList = new ArrayList<ArrayList<Image>>();
-	private ArrayList<AbstractCSVFileAdapter> adapterList = new ArrayList<AbstractCSVFileAdapter>();
+	public MyPanel() {
+		// 絶対座標配置
+		setLayout(null);
+
+	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
-		for (int i = 0; i < adapterList.size(); i++) {
-			AbstractCSVFileAdapter adapter = adapterList.get(i);
-			ArrayList<Image> childImageList = imageList.get(i);
-			for (int ii = 0; ii < childImageList.size(); ii++) {
-				Image img = (Image) childImageList.get(ii);
-				g.drawImage(img, adapter.getPositionX().get(ii), adapter.getPositionY().get(ii), this);
-			}
-		}
 	}
 
 	/**
@@ -54,23 +43,12 @@ public abstract class MyPanel extends JPanel {
 		childImageList.add(image);
 	}
 
-	public void allLoadImage(String mode, String csvFileStr) {
-		AbstractCSVFileAdapter adapter;
-		if (mode.equals("simple")) {
-			adapter = new CSVSimpleImageAdapter(csvFileStr);
-		} else if (mode.equals("button")) {
-			adapter = new CSVButtonImageAdapter(csvFileStr);
-		} else {
-			adapter = null;
-			Log.f("知らないAdapterです。");
-		}
-
-		adapterList.add(adapter);
-		ArrayList<Image> childImageList = new ArrayList<Image>();
-		imageList.add(childImageList);
-
-		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i), childImageList);
-		}
+	/*
+	 * コンポーネント c を 座標 (x, y) に配置する
+	 */
+	public void setComponent(Component c, int x, int y) {
+		c.setBounds(x, y, c.getWidth(), c.getHeight());
+		add(c);
+		repaint();
 	}
 }
