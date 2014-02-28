@@ -16,7 +16,6 @@ public class MainFrame extends JFrame {
 
 		// パネルサイズに合わせてフレームサイズを自動設定
 		pack();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {

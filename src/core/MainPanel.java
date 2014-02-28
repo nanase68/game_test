@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import core.csv.CSVSimpleImageAdapter;
-
 import keys.Keys;
+import core.csv.AbstractCSVFileAdapter;
+import core.csv.CSVButtonImageAdapter;
+import core.csv.CSVSimpleImageAdapter;
 
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
@@ -25,7 +26,10 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 
 	private ArrayList<Point> pointList = new ArrayList<Point>();
 	private ArrayList<Image> imageList = new ArrayList<Image>();
+	private ArrayList<AbstractCSVFileAdapter> adapterList = new ArrayList<AbstractCSVFileAdapter>();
 
+	private CSVSimpleImageAdapter simpleAdapter;
+	private CSVButtonImageAdapter buttonAdapter;
 	private CSVSimpleImageAdapter adapter;
 
 	public Image image;
@@ -44,7 +48,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
 
-		allLoadImage("image.csv");
+		allLoadImage("simple", "image.csv");
 	}
 
 	public void paintComponent(Graphics g) {
@@ -86,10 +90,15 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 		imageList.add(image);
 	}
 
-	public void allLoadImage(String csvFileStr) {
-		adapter = new CSVSimpleImageAdapter(csvFileStr);
+	public void allLoadImage(String mode, String csvFileStr) {
+		if (mode.equals("simple")) {
+			adapter = new CSVSimpleImageAdapter(csvFileStr);
+		} else if (mode.equals("button")) {
+			// adapter = new CSVButtonImageAdapter(csvFileStr);
+		}
+
 		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			loadImage(Keys.imageDir + adapter.getFilename().get(i));
+			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i));
 		}
 	}
 

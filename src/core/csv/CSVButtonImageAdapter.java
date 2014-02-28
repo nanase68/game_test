@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import keys.Keys;
 
-public class CSVSimpleImageAdapter extends AbstractCSVFileAdapter {
-	public CSVSimpleImageAdapter(String csvFileStr) {
-		readCSV(Keys.CSV_SIMPLE_IMAGE_DIR + csvFileStr);
+public class CSVButtonImageAdapter extends AbstractCSVFileAdapter {
+	public CSVButtonImageAdapter(String csvFileStr) {
+		readCSV(Keys.CSV_BUTTON_IMAGE_DIR + csvFileStr);
 
 		ArrayStringToInteger(csv.get(1), positionX);
 		ArrayStringToInteger(csv.get(2), positionY);

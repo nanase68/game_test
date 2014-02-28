@@ -2,14 +2,15 @@ package core.csv;
 
 import java.util.ArrayList;
 
-import keys.Keys;
 import util.CSVFileReader;
 
 public abstract class AbstractCSVFileAdapter {
 	protected ArrayList<ArrayList<String>> csv;
+	protected ArrayList<Integer> positionX = new ArrayList<Integer>();
+	protected ArrayList<Integer> positionY = new ArrayList<Integer>();
 
-	protected void readCSV(String csvFileStr) {
-		CSVFileReader reader = new CSVFileReader(Keys.csvDir + csvFileStr);
+	protected void readCSV(String csvFileFullPass) {
+		CSVFileReader reader = new CSVFileReader(csvFileFullPass);
 		csv = reader.readCSV();
 	}
 
