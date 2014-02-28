@@ -1,4 +1,4 @@
-package panels.csv;
+package adapter.csv;
 
 import java.util.ArrayList;
 

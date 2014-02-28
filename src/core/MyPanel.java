@@ -3,29 +3,23 @@ package core;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
-import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import keys.Keys;
-import panels.csv.AbstractCSVFileAdapter;
-import panels.csv.CSVButtonImageAdapter;
-import panels.csv.CSVSimpleImageAdapter;
 import util.Log;
+import adapter.csv.AbstractCSVFileAdapter;
+import adapter.csv.CSVButtonImageAdapter;
+import adapter.csv.CSVSimpleImageAdapter;
 
 public abstract class MyPanel extends JPanel {
-	private ArrayList<Point> pointList = new ArrayList<Point>();
 	private ArrayList<ArrayList<Image>> imageList = new ArrayList<ArrayList<Image>>();
 	private ArrayList<AbstractCSVFileAdapter> adapterList = new ArrayList<AbstractCSVFileAdapter>();
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
-		for (int i = 0; i < pointList.size(); i++) {
-			// Point p = (Point) pointList.get(i);
-		}
 
 		for (int i = 0; i < adapterList.size(); i++) {
 			AbstractCSVFileAdapter adapter = adapterList.get(i);
