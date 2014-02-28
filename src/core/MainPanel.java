@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import core.csv.CSVSimpleImageAdapter;
+
 import keys.Keys;
 
 public class MainPanel extends JPanel implements MouseListener, KeyListener {
@@ -24,7 +26,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	private ArrayList<Point> pointList = new ArrayList<Point>();
 	private ArrayList<Image> imageList = new ArrayList<Image>();
 
-	private CSVFileAdapter adapter;
+	private CSVSimpleImageAdapter adapter;
 
 	public Image image;
 
@@ -85,7 +87,7 @@ public class MainPanel extends JPanel implements MouseListener, KeyListener {
 	}
 
 	public void allLoadImage(String csvFileStr) {
-		adapter = new CSVFileAdapter(csvFileStr);
+		adapter = new CSVSimpleImageAdapter(csvFileStr);
 		for (int i = 0; i < adapter.getFilename().size(); i++) {
 			loadImage(Keys.imageDir + adapter.getFilename().get(i));
 		}
