@@ -4,13 +4,15 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import keys.Keys;
+
 public class MainFrame extends JFrame {
 	public MainFrame() {
 		// タイトルを設定
 		setTitle("Hello Worldを表示する");
 
 		// メインパネルを作成してフレームに追加
-		MainPanel panel = new MainPanel();
+		MainPanel panel = new MainPanel(Keys.WINDOW_WIDTH, Keys.WINDOW_HEIGHT);
 		Container contentPane = getContentPane();
 		contentPane.add(panel);
 

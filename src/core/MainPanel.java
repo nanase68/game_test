@@ -1,6 +1,5 @@
 package core;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -10,8 +9,8 @@ import keys.Keys;
 import panel.csv.CSVPanel;
 
 public class MainPanel extends MyPanel implements KeyListener {
-	public MainPanel() {
-		super();
+	public MainPanel(int width, int height) {
+		super(width, height);
 		// パネルの推奨サイズを設定、pack()するときに必要
 		setPreferredSize(new Dimension(Keys.WINDOW_WIDTH, Keys.WINDOW_HEIGHT));
 
@@ -21,19 +20,19 @@ public class MainPanel extends MyPanel implements KeyListener {
 		// キーリスナーを登録（忘れやすい）
 		addKeyListener(this);
 
-		CSVPanel panel = new CSVPanel();
+		// パネル表示テスト
+		CSVPanel panel = new CSVPanel(400, 300);
 		panel.allLoadImage("simple", "image.csv");
-		setComponent(panel, 100, 0);
-		repaint();
-		// allLoadImage("simple", "image.csv");
-		// allLoadImage("button", "image.csv");
+		setComponent(panel, 0, 0);
+
+		CSVPanel panel2 = new CSVPanel(400, 300);
+		panel2.allLoadImage("button", "image.csv");
+		setComponent(panel2, 0, 300);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		g.setColor(Color.red);
-		g.fillRect(10, 10, 100, 100);
 	}
 
 	/* 以下、キーボード制御 */

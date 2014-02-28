@@ -10,6 +10,6 @@ public class Keys {
 	public static final String CSV_BUTTON_IMAGE_DIR = "data/csv/button/";
 
 	// ウィンドウのパネルサイズ
-	public static final int WINDOW_WIDTH = 400;
-	public static final int WINDOW_HEIGHT = 300;
+	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_HEIGHT = 600;
 }

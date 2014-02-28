@@ -1,6 +1,7 @@
 package core;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -10,9 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public abstract class MyPanel extends JPanel {
-	public MyPanel() {
+	public MyPanel(int width, int height) {
 		// 絶対座標配置
 		setLayout(null);
+		setSize(new Dimension(width, height));
 
 	}
 
@@ -49,6 +51,5 @@ public abstract class MyPanel extends JPanel {
 	public void setComponent(Component c, int x, int y) {
 		c.setBounds(x, y, c.getWidth(), c.getHeight());
 		add(c);
-		repaint();
 	}
 }
