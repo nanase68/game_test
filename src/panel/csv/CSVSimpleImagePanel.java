@@ -11,11 +11,11 @@ import adapter.csv.CSVButtonImageAdapter;
 import adapter.csv.CSVSimpleImageAdapter;
 import core.MyPanel;
 
-public class CSVPanel extends MyPanel {
+public class CSVSimpleImagePanel extends MyPanel {
 	private ArrayList<ArrayList<Image>> imageList = new ArrayList<ArrayList<Image>>();
 	private ArrayList<AbstractCSVFileAdapter> adapterList = new ArrayList<AbstractCSVFileAdapter>();
 
-	public CSVPanel(int width, int height) {
+	public CSVSimpleImagePanel(int width, int height) {
 		super(width, height);
 
 	}
@@ -53,7 +53,5 @@ public class CSVPanel extends MyPanel {
 		for (int i = 0; i < adapter.getFilename().size(); i++) {
 			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i), childImageList);
 		}
-
-		// repaint();
 	}
 }
