@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MediaTracker;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -25,24 +23,17 @@ public abstract class MyPanel extends JPanel {
 	/**
 	 * イメージをロードする
 	 */
-	public void loadImage(String pass, ArrayList<Image> childImageList) {
-		// プレイヤーのイメージを読み込む
+	public Image loadImage(String pass) {
+		// イメージを読み込む
 		// ImageIconを使うとMediaTrackerを使わなくてすむ
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(pass));
+		ImageIcon icon = loadIcon(pass);
 		Image image = icon.getImage();
 
-		// MediaTrackerに登録
-		MediaTracker tracker = new MediaTracker(this);
-		tracker.addImage(image, 0);
+		return image;
+	}
 
-		// イメージ読み込み完了まで待機
-		try {
-			tracker.waitForID(0);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		childImageList.add(image);
+	public ImageIcon loadIcon(String pass) {
+		return new ImageIcon(getClass().getClassLoader().getResource(pass));
 	}
 
 	/*

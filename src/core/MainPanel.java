@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import keys.Keys;
-import panel.csv.CSVSimpleImagePanel;
+import panel.csv.CSVButtonImagePanel;
 
 public class MainPanel extends MyPanel implements KeyListener {
 	public MainPanel(int width, int height) {
@@ -21,12 +21,12 @@ public class MainPanel extends MyPanel implements KeyListener {
 		addKeyListener(this);
 
 		// パネル表示テスト
-		CSVSimpleImagePanel panel = new CSVSimpleImagePanel(400, 300);
-		panel.allLoadImage("simple", "image.csv");
+		CSVButtonImagePanel panel = new CSVButtonImagePanel(400, 300);
+		panel.allLoadSimpleImage("image.csv");
 		setComponent(panel, 0, 0);
 
-		CSVSimpleImagePanel panel2 = new CSVSimpleImagePanel(400, 300);
-		panel2.allLoadImage("button", "image.csv");
+		CSVButtonImagePanel panel2 = new CSVButtonImagePanel(400, 300);
+		panel2.allLoadButtonImage("image.csv");
 		setComponent(panel2, 0, 300);
 	}
 

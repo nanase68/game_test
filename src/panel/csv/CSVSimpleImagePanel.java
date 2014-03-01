@@ -51,7 +51,8 @@ public class CSVSimpleImagePanel extends MyPanel {
 		imageList.add(childImageList);
 
 		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i), childImageList);
+			Image image = loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i));
+			childImageList.add(image);
 		}
 	}
 }
