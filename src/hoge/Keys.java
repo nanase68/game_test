@@ -1,4 +1,4 @@
-package keys;
+package hoge;
 
 public class Keys {
 	public static final boolean IS_DEBUG = true;
