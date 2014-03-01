@@ -10,8 +10,16 @@ public class Log {
 		}
 	}
 
+	public static <T> void d(T generics) {
+		d(generics.toString());
+	}
+
 	public static void f(String log) {
 		// f is fatal
 		System.out.println(log);
+	}
+
+	public static <T> void f(T generics) {
+		f(generics.toString());
 	}
 }

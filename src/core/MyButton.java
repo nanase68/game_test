@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import logic.LogicManager;
-import util.Log;
 
 public class MyButton extends JButton implements MouseListener {
 
@@ -30,7 +29,6 @@ public class MyButton extends JButton implements MouseListener {
 		super();
 		changeIcon(pass);
 		setName(name);
-		Log.d("" + name);
 		setBorderPainted(false);
 
 		/* MouseListenerを登録 */
