@@ -24,9 +24,9 @@ public abstract class AbstractCSVFileAdapter {
 		}
 	}
 
-	public abstract ArrayList<String> getFilename();
+	public abstract ArrayList<String> getFilenameList();
 
-	public abstract ArrayList<Integer> getPositionX();
+	public abstract ArrayList<Integer> getPositionXList();
 
-	public abstract ArrayList<Integer> getPositionY();
+	public abstract ArrayList<Integer> getPositionYList();
 }

@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 import keys.Keys;
 import adapter.csv.AbstractCSVFileAdapter;
 import adapter.csv.CSVButtonImageAdapter;
@@ -34,7 +32,7 @@ public class CSVButtonImagePanel extends MyPanel {
 			ArrayList<Image> childImageList = imageList.get(i);
 			for (int ii = 0; ii < childImageList.size(); ii++) {
 				Image img = (Image) childImageList.get(ii);
-				g.drawImage(img, adapter.getPositionX().get(ii), adapter.getPositionY().get(ii), this);
+				g.drawImage(img, adapter.getPositionXList().get(ii), adapter.getPositionYList().get(ii), this);
 			}
 		}
 	}
@@ -48,8 +46,8 @@ public class CSVButtonImagePanel extends MyPanel {
 		ArrayList<Image> childImageList = new ArrayList<Image>();
 		imageList.add(childImageList);
 
-		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			Image image = loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i));
+		for (int i = 0; i < adapter.getFilenameList().size(); i++) {
+			Image image = loadImage(Keys.IMAGE_DIR + adapter.getFilenameList().get(i));
 			childImageList.add(image);
 		}
 	}
@@ -64,16 +62,14 @@ public class CSVButtonImagePanel extends MyPanel {
 		buttonList.add(childButtonList);
 
 		// ボタンをnewしてArrayListに詰める
-		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			ImageIcon icon = loadIcon(Keys.IMAGE_DIR + adapter.getFilename().get(i));
-			int width = icon.getIconWidth();
-			int height = icon.getIconHeight();
-			MyButton button = new MyButton(icon, width, height);
+		for (int i = 0; i < adapter.getFilenameList().size(); i++) {
+			String buttonName = adapter.getButtonNameList().get(i);
+			MyButton button = new MyButton(Keys.IMAGE_DIR + adapter.getFilenameList().get(i), buttonName);
 
 			// ボタンをパネルにセット
 			childButtonList.add(button);
-			int x = adapter.getPositionX().get(i);
-			int y = adapter.getPositionY().get(i);
+			int x = adapter.getPositionXList().get(i);
+			int y = adapter.getPositionYList().get(i);
 			setComponent(button, x, y);
 		}
 	}

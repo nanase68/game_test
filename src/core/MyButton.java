@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import logic.LogicAdapter;
+import logic.LogicManager;
+import util.Log;
 
 public class MyButton extends JButton implements MouseListener {
 
@@ -24,16 +26,35 @@ public class MyButton extends JButton implements MouseListener {
 		this(icon, x, y, "");
 	}
 
+	public MyButton(String pass, String name) {
+		super();
+		changeIcon(pass);
+		setName(name);
+		Log.d("" + name);
+		setBorderPainted(false);
+
+		/* MouseListenerを登録 */
+		addMouseListener(this);
+	}
+
+	public void changeIcon(String pass) {
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(pass));
+		setIcon(icon);
+		int width = icon.getIconWidth();
+		int height = icon.getIconHeight();
+		setSize(width, height);
+	}
+
 	/* 以下、マウス制御 */
 	// マウスをクリックしたとき呼ばれる
 	public void mouseClicked(MouseEvent e) {
-		LogicAdapter.actionMouseClicked(this);
+		LogicManager.actionMouseClicked(this);
 		repaint();
 	}
 
 	// マウスがウィンドウ内に入ったとき呼ばれる
 	public void mouseEntered(MouseEvent e) {
-		LogicAdapter.actionMouseEntered(this);
+		LogicManager.actionMouseEntered(this);
 		repaint();
 	}
 

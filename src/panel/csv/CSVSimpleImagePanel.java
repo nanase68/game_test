@@ -30,7 +30,7 @@ public class CSVSimpleImagePanel extends MyPanel {
 			ArrayList<Image> childImageList = imageList.get(i);
 			for (int ii = 0; ii < childImageList.size(); ii++) {
 				Image img = (Image) childImageList.get(ii);
-				g.drawImage(img, adapter.getPositionX().get(ii), adapter.getPositionY().get(ii), this);
+				g.drawImage(img, adapter.getPositionXList().get(ii), adapter.getPositionYList().get(ii), this);
 			}
 		}
 	}
@@ -50,8 +50,8 @@ public class CSVSimpleImagePanel extends MyPanel {
 		ArrayList<Image> childImageList = new ArrayList<Image>();
 		imageList.add(childImageList);
 
-		for (int i = 0; i < adapter.getFilename().size(); i++) {
-			Image image = loadImage(Keys.IMAGE_DIR + adapter.getFilename().get(i));
+		for (int i = 0; i < adapter.getFilenameList().size(); i++) {
+			Image image = loadImage(Keys.IMAGE_DIR + adapter.getFilenameList().get(i));
 			childImageList.add(image);
 		}
 	}

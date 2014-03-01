@@ -13,17 +13,21 @@ public class CSVButtonImageAdapter extends AbstractCSVFileAdapter {
 	}
 
 	@Override
-	public ArrayList<String> getFilename() {
+	public ArrayList<String> getFilenameList() {
 		return csv.get(0); // csvの0項目はファイルの名前
 	}
 
 	@Override
-	public ArrayList<Integer> getPositionX() {
+	public ArrayList<Integer> getPositionXList() {
 		return positionX;
 	}
 
 	@Override
-	public ArrayList<Integer> getPositionY() {
+	public ArrayList<Integer> getPositionYList() {
 		return positionY;
+	}
+
+	public ArrayList<String> getButtonNameList() {
+		return csv.get(3);
 	}
 }

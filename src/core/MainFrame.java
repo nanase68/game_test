@@ -5,11 +5,15 @@ import java.awt.Container;
 import javax.swing.JFrame;
 
 import keys.Keys;
+import logic.LogicManager;
 
 public class MainFrame extends JFrame {
 	public MainFrame() {
 		// タイトルを設定
 		setTitle("Hello Worldを表示する");
+
+		// 初期Logicの設定
+		LogicManager.setLogic("test");
 
 		// メインパネルを作成してフレームに追加
 		MainPanel panel = new MainPanel(Keys.WINDOW_WIDTH, Keys.WINDOW_HEIGHT);
