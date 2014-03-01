@@ -7,6 +7,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import keys.Keys;
 import logic.LogicManager;
 
 public class MyButton extends JButton implements MouseListener {
@@ -36,7 +37,8 @@ public class MyButton extends JButton implements MouseListener {
 	}
 
 	public void changeIcon(String pass) {
-		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(pass));
+		String fullPass = Keys.IMAGE_DIR + pass;
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource(fullPass));
 		setIcon(icon);
 		int width = icon.getIconWidth();
 		int height = icon.getIconHeight();

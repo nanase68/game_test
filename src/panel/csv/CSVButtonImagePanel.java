@@ -64,7 +64,7 @@ public class CSVButtonImagePanel extends MyPanel {
 		// ボタンをnewしてArrayListに詰める
 		for (int i = 0; i < adapter.getFilenameList().size(); i++) {
 			String buttonName = adapter.getButtonNameList().get(i);
-			MyButton button = new MyButton(Keys.IMAGE_DIR + adapter.getFilenameList().get(i), buttonName);
+			MyButton button = new MyButton(adapter.getFilenameList().get(i), buttonName);
 
 			// ボタンをパネルにセット
 			childButtonList.add(button);
