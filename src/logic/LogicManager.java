@@ -16,7 +16,7 @@ public class LogicManager {
 	}
 
 	public static void actionMouseEntered(MyButton button) {
-		currentLogic.actionMouseClicked(button);
+		currentLogic.actionMouseEntered(button);
 	}
 
 	public static void setLogic(String str) {
@@ -25,5 +25,9 @@ public class LogicManager {
 		} else if (str.equals("test")) {
 			currentLogic = testLogic;
 		}
+	}
+
+	static void changeButton(MyButton button, String pass) {
+		button.changeIcon(pass);
 	}
 }

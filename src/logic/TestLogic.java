@@ -6,14 +6,12 @@ public class TestLogic extends AbstractLogic {
 
 	@Override
 	void actionMouseClicked(MyButton button) {
-		// TODO Auto-generated method stub
-
+		LogicManager.changeButton(button, "reimu001-2.png");
 	}
 
 	@Override
 	void actionMouseEntered(MyButton button) {
-		// TODO Auto-generated method stub
-
+		LogicManager.changeButton(button, "reimu0012-2.png");
 	}
 
 }
